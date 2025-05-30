@@ -17,11 +17,37 @@ Our function must return an array with the coordinates of the spot as an [X, Y] 
 
 Note
 Note: There may be multiple available spots for a particular vehicle. It does not matter which spot your function chooses, as long as the spot is available. And if there are no available spots, remember to return false.
-*/
+*/ //foreach
 
 const whereCanIPark = function (spots, vehicle) {
   // Code here!
-};
+  let result = false;
+  spots.some((row, y) => {
+    return row.some((value, x) => {
+      // 여기에 처리할 로직을 작성하세요
+      if (value === value.toUpperCase()) {
+        if (vehicle === "regular" && value === "R") {
+          //result.push([x, y])
+          result = [x, y];
+          return true;
+        } else if ((value === "R" || value === "S") && vehicle === "small") {
+          result = [x, y];
+          return true;
+        } else if ((value === "R" || value === "S" || value === "M") && vehicle === "motorcycle") {
+          result = [x, y];
+          return true;
+        } else {
+          //result = false;
+          return false;
+        }
+      }
+
+    });
+    //console.log("reuslt:" + result);
+
+  });
+  return result;
+}
 
 console.log(
   whereCanIPark(

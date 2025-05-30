@@ -6,10 +6,22 @@ The first will be the value to repeat, the second will be the amount of times to
 
 Instruction
 Create a function named repeatNumbers that will return a string with each of the given values repeated the appropriate number of times, if there are multiple sets of values each set should be separated by a comma. If there is only one set of values then you should omit the comma.
+map
 */
 
 const repeatNumbers = function (data) {
   // Put your solution here
+  return data.map(n => {
+    let maxValue = n[1];
+    //let result = [];
+    let words = "";
+
+    for (let i = 0; i < maxValue; i++) {
+      words += n[0];
+    }
+
+    return words;
+  }).join(", ")
 };
 
 console.log(repeatNumbers([[1, 10]])); // 1111111111
@@ -19,6 +31,7 @@ console.log(
     [2, 3],
   ])
 ); // 11, 222
+
 console.log(
   repeatNumbers([
     [10, 4],

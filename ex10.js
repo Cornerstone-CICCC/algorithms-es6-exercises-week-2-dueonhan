@@ -7,9 +7,32 @@ Instruction
 Create a function named multiplicationTable that receives a number maxValue as input and creates a square multiplication table where maxValue is the largest value in the table.
 */
 
+
+
+// const multiplicationTable = function (maxValue) {
+//   // Your code here
+//   let result = [];
+//   for (let i = 1; i <= maxValue; i++) {
+//     let row = [];
+//     for (let j = 1; j <= maxValue; j++) {
+//       row.push(i * j)
+//     }
+//     result.push(row);
+
+//   }
+//   return result;
+
+
+// };
+
 const multiplicationTable = function (maxValue) {
-  // Your code here
+  return Array.from({ length: maxValue }, (_, i) =>
+    Array.from({ length: maxValue }, (_, j) => (i + 1) * (j + 1))
+  );
 };
+
+//console.log(factorial(10))
+
 
 console.log(multiplicationTable(1));
 // 1

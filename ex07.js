@@ -6,10 +6,32 @@ For this challenge we will implement a function called checkAir(), which will ch
 
 Note
 Not sure where to get started? It might be useful to start by creating a variable to keep track of how many dirty samples we find as we loop through the array of samples. We can increment or add to this number using the ++ operator. Once you know how many dirty samples there are, we just need to do some simple math to determine if it exceeds the threshold.
+reduce
 */
 
 const checkAir = function (samples, threshold) {
   // Code here!
+  let average = 0;
+  let smapleLength = samples.length;
+
+  const dirtYCount = samples.reduce((acc, sample) => {
+    if (sample === "dirty") {
+      acc++;
+    }
+    return acc;
+  }, 0)
+
+
+  average = dirtYCount / smapleLength;
+  average = average.toFixed(1) //decimal point changed 
+
+
+  if (Number(average) > threshold) {
+    return "Polluted";
+  } else {
+    return "clean";
+  }
+
 };
 
 console.log(

@@ -10,6 +10,18 @@ Create a function named camelCase that will convert a string to camel case, and 
 
 const camelCase = function (input) {
   // Your code here
+  let words = input.split("")
+  let sum = "";
+  words.forEach((element, i) => {
+
+    if (element === " ") {
+      words[i + 1] = words[i + 1].toUpperCase();
+    } else {
+      sum += element
+    }
+  });
+  //console.log("sum" + sum)
+  return sum;
 };
 
 console.log(camelCase("this is a string")); // thisIsAString

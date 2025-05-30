@@ -8,7 +8,16 @@ Create a function named sumLargestNumbers that will receive an array of numbers 
 
 const sumLargestNumbers = function (data) {
   // Put your solution here
+  let sum = 0;
+
+  const sortDesc = (a, b) => b > a ? 1 : -1;
+
+  console.log(data.sort(sortDesc))
+  sum = data.sort(sortDesc)[0] + data.sort(sortDesc)[1]
+
+  return sum;
 };
+
 
 console.log(sumLargestNumbers([1, 10])); // 11
 console.log(sumLargestNumbers([1, 2, 3])); // 5
