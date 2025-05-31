@@ -24,9 +24,40 @@ Penny (1¢)
 
 const calculateChange = function (total, cash) {
   // Your code here
+  let change = {};
+
+  let spareChage = cash - total;
+  //console.log("spareChage" + spareChage);
+
+  //let denominations = ["Twenty dollars", "Ten dollars", "Five dollars", "Two dollars", "One dollar" , "Quarter", "Dime", "Nickel", "Penny"]
+  let denominations = [
+    { name: "Twenty dollars", price: 2000 },
+    { name: "Ten dollars", price: 1000 },
+    { name: "Five dollars", price: 500 },
+    { name: "Two dollars", price: 200 },
+    { name: "One dollar", price: 100 },
+    { name: "Quarter", price: 25 },
+    { name: "Dime", price: 10 },
+    { name: "Nickel", price: 5 },
+    { name: "Penny", price: 1 },
+  ]
+
+  denominations.forEach(denomination => {
+    let intergerNumber = Math.floor((spareChage / denomination.price)) //몫
+
+    if (intergerNumber > 0) {
+      change[denomination.name] = intergerNumber;
+      spareChage = spareChage % denomination.price;
+    }
+
+  })
+
+  return change;
+
+
 };
 
-console.log(calculateChange(1787, 2000)); // { twoDollar: 1, dime: 1, penny: 3 }
+console.log(calculateChange(1787, 2000)); // { twoDollar: 1, dime: 1, penny: 3 } //213
 console.log(calculateChange(2623, 4000)); // { tenDollar: 1, twoDollar: 1, oneDollar: 1, quarter: 3, penny: 2 }
 console.log(calculateChange(501, 1000)); // { twoDollar: 2, quarter: 3, dime: 2, penny: 4 }
 

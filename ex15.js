@@ -10,6 +10,18 @@ Create a function named organizeInstructors that will receive an array of instru
 
 const organizeInstructors = function (instructors) {
   // Put your solution here
+  let objreturn = {}
+
+  instructors.filter(instructor => {
+
+    if (objreturn[instructor.course] == undefined) {
+      objreturn[instructor.course] = []
+    }
+    objreturn[instructor.course].push(instructor.name)
+
+
+  })
+  return objreturn;
 };
 
 console.log(
@@ -20,6 +32,8 @@ console.log(
     { name: "Donald", course: "Web" },
   ])
 ); // { iOS: ["Samuel"], Web: ["Victoria", "Karim", "Donald"]}
+
+
 console.log(
   organizeInstructors([
     { name: "Brendan", course: "Blockchain" },
