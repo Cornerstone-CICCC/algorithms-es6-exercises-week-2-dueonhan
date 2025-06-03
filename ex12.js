@@ -22,6 +22,23 @@ This one is a doozy! We might want to start by creating a helper function called
 
 const chooseRecipe = function (bakeryA, bakeryB, recipes) {
   // Code here!
+  let resultwords = "";
+  recipes.forEach((recipe, i) => {
+
+    const result = recipe.ingredients.every((element, i) => {
+      const exeistBakeryA = bakeryA.includes(element);
+      const exeistBakeryB = bakeryB.includes(element);
+      //console.log(`exeistBakeryA ${exeistBakeryA} exeistBakeryB ${exeistBakeryB}`)
+      return exeistBakeryA || exeistBakeryB
+    });
+    //console.log("result", result)
+    if (result) {
+      resultwords = recipe.name;
+    }
+    //console.log("resultwords", resultwords)
+  })
+  return resultwords;
+
 };
 
 let bakeryA = ["saffron", "eggs", "tomato paste", "coconut", "custard"];
