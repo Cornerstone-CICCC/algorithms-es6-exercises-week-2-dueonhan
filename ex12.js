@@ -28,14 +28,14 @@ const chooseRecipe = function (bakeryA, bakeryB, recipes) {
     const result = recipe.ingredients.every((element, i) => {
       const exeistBakeryA = bakeryA.includes(element);
       const exeistBakeryB = bakeryB.includes(element);
-      //console.log(`exeistBakeryA ${exeistBakeryA} exeistBakeryB ${exeistBakeryB}`)
+
       return exeistBakeryA || exeistBakeryB
     });
-    //console.log("result", result)
+
     if (result) {
       resultwords = recipe.name;
     }
-    //console.log("resultwords", resultwords)
+
   })
   return resultwords;
 

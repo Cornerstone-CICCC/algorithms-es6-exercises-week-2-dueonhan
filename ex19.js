@@ -66,3 +66,118 @@ Instruction
 Create a function generateBoard which will return a nested array representing the board, containing the location of two queens.
 Create a function called queenThreat that will indicate whether or not the two queens are positioned so that they attack each other.
 */
+
+function queenThreat(generateBoardArray) {
+
+
+  let findArray = [];
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
+      if (generateBoardArray[i][j] === 1) {
+        findArray.push([i, j]);
+        if (findArray.length === 2) break;
+      }
+    }
+    if (findArray.length === 2) break;
+  }
+
+
+  console.log("findarray:", findArray)
+
+  //leftUp to Rightunder
+  function extractDiagonal1(matrix, findArray) {
+    const result = [];
+
+    const [r0, c0] = findArray;
+    const n = matrix.length;
+
+    for (let r = r0, c = c0; r < n && c < n; r++, c++) {
+      if (r0 !== r && c0 !== c) {
+        result.push([r, c]);
+      }
+
+    }
+    return result;
+  }
+
+  console.log("extractDiagonal1 ans", extractDiagonal1(generateBoardArray, findArray))
+  //leftUnder to Rightup
+  function extractDiagonal2(matrix, findArray) {
+    const result = [];
+
+    const [r0, c0] = findArray; //baseline
+    const n = matrix.length;
+
+    for (let r = r0, c = c0; r >= 0 && c < n; r--, c++) {
+      if (r0 !== r && c0 !== c) {
+        result.push([r, c]);
+      }
+
+    }
+    return result;
+  }
+
+  console.log("extractDiagonal2 ans", extractDiagonal2(generateBoardArray, findArray))
+  console.log("extractDiagonal1 findArray", findArray)
+
+  const firstQueen = findArray[0];   // ex. [2, 0]
+  const secondQueen = findArray[1];  // ex. [7, 5]
+
+  let Diagonal1Results = extractDiagonal1(generateBoardArray, firstQueen) //[ [ [ 2 ], [ 0 ] ], [ 3, 1 ], [ 4, 2 ], [ 5, 3 ], [ 6, 4 ], [ 7, 5 ] ]
+  let Diagonal2Results = extractDiagonal2(generateBoardArray, firstQueen) //[ [ [ 2 ], [ 0 ] ], [ 1, 1 ], [ 0, 2 ] ]
+
+  const Diagonal1BooleanResults = Diagonal1Results.some(item =>
+    item[0] === secondQueen[0] && item[1] === secondQueen[1]
+  );
+
+  const Diagonal2BooleanResults = Diagonal2Results.some(item =>
+    item[0] === secondQueen[0] && item[1] === secondQueen[1]
+  );
+
+
+  console.log(`Diagonal1BooleanResults: ${Diagonal1BooleanResults}`);
+  console.log(`Diagonal2BooleanResults: ${Diagonal2BooleanResults}`);
+
+  // row
+  if (JSON.stringify(findArray[0][0]) === JSON.stringify(findArray[1][0]) || JSON.stringify(findArray[0][1]) === JSON.stringify(findArray[1][1]) || Diagonal1BooleanResults === true || Diagonal2BooleanResults === true) {
+    return true;
+  } else {
+    return false;
+  }
+
+
+}
+
+
+
+//console.log("extractDiagonal1: ", extractDiagonal1(generateBoard([0, 0], [5, 7])))
+
+
+
+//console.log("extractDiagonal2: ", extractDiagonal2(generateBoard([0, 0], [5, 7])))
+
+function generateBoard(whiteQueen, blackQueen) {
+
+  let cheseBoard = []
+
+  for (let i = 0; i < 8; i++) {
+    const newArray = []
+
+    for (let j = 0; j < 8; j++) {
+      if (whiteQueen[0] === i && whiteQueen[1] === j || blackQueen[0] === i && blackQueen[1] === j) {
+        newArray.push(1)
+      } else {
+        newArray.push(0)
+      }
+    }
+    cheseBoard.push(newArray);
+  }
+  //console.log("cheseBoard2", cheseBoard);
+
+  return cheseBoard
+}
+
+
+
+
+console.log("queenThreat(generateBoard([2, 0], [5, 7]))", queenThreat(generateBoard([2, 0], [7, 5]))) 

@@ -21,8 +21,18 @@ Create a function named urlDecode that will receive a URL encoded string, and re
 
 */
 
-const urlDecode = function (text) {
+const urlDecode = function (param) {
   // Put your solution here
+  let resultobj = {}
+  let urlParams = new URLSearchParams(param)
+
+  for (const [key, value] of urlParams.entries()) {
+    resultobj[key] = value;
+  }
+
+  return resultobj;
+
+
 };
 
 console.log(urlDecode("duck=rubber")); //{duck: "rubber"}
